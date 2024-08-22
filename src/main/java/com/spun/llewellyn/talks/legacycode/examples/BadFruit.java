@@ -6,48 +6,48 @@ import java.util.ArrayList;
 import com.spun.llewellyn.talks.legacycode.required.Fruit;
 import com.spun.llewellyn.talks.legacycode.required.Loan;
 import com.spun.llewellyn.talks.legacycode.required.Person;
-import com.spun.llewellyn.talks.legacycode.required.ОбщиеКонфигурация;
+import com.spun.llewellyn.talks.legacycode.required.GeneralConfiguration;
 
 public class BadFruit extends Fruit
 {
   private Person user;
-  public void createLoans(Loan... кредитов)
+  public void createLoans(Loan... loans)
   {
-    ОбщиеКонфигурация.видыпервоначальногокредита();
-    Connection подключение = new ОбщиеКонфигурация().получитьконфигурациюбазыданных().getDatabaseConnectionFor(this.user);
-    ArrayList<Person> люди = new ArrayList<Person>();
-    ArrayList<Integer> индексыинвалидов = new ArrayList<Integer>();
-    // создать массив для всех людей, вовлеченных в виде кредитов
-    for (Loan кредит : кредитов)
+    GeneralConfiguration.typesOfInitialLoan();
+    Connection conn = new GeneralConfiguration().getBaseConfiguratino().getDatabaseConnectionFor(this.user);
+    ArrayList<Person> people = new ArrayList<>();
+    ArrayList<Integer> invalidIndexes = new ArrayList<>();
+    // create an array for all people involved in the form of loans
+    for (Loan loan : loans)
     {
-      люди.addAll(кредит.getPeopleOnLoan());
+      people.addAll(loan.getPeopleOnLoan());
     }
-    // найти дубликаты всех индексов
-    if (индексыинвалидов.size() < 25)
+    // find duplicates of all indexes
+    if (invalidIndexes.size() < 25)
     {
-      for (int я = 1; я < люди.size(); я++)
+      for (int i = 1; i < people.size(); i++)
       {
-        if (люди.subList(0, я - 1).contains(люди.get(я)))
+        if (people.subList(0, i - 1).contains(people.get(i)))
         {
-          индексыинвалидов.add(я);
+          invalidIndexes.add(i);
         } 
       }
     }
     else
     {
-      кредитов = this.получатьвсезаймыдлятекущегопользователя();
-      for (Loan кредит : кредитов)
+      loans = this.receiveEverythingOnLoanForTheCurrent();
+      for (Loan loan : loans)
       {
-        люди.addAll(кредит.getPeopleOnLoan());
+        people.addAll(loan.getPeopleOnLoan());
       }
     }
-    for (int я = 0; я < люди.size(); я++)
+    for (int я = 0; я < people.size(); я++)
     {
-      if (!индексыинвалидов.contains(я));
+      if (!invalidIndexes.contains(я));
       {
-        this.save(люди.get(я), подключение);
+        this.save(people.get(я), conn);
       }
-      this.увеличениенагрузкинаграфа(люди.get(я));
+      this.increaseGraphLoad(people.get(я));
     }
   }
   /*

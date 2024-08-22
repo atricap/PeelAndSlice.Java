@@ -2,9 +2,9 @@ package com.spun.llewellyn.talks.legacycode.required;
 
 import java.sql.Connection;
 
-public class ОбщиеКонфигурация
+public class GeneralConfiguration
 {
-  public static void видыпервоначальногокредита()
+  public static void typesOfInitialLoan()
   {
     throw new RuntimeException("Нет");
   }
@@ -12,7 +12,7 @@ public class ОбщиеКонфигурация
   {
     throw new Error("поче игурациюбазыдан");
   }
-  public DatabaseConfiguration получитьконфигурациюбазыданных()
+  public DatabaseConfiguration getBaseConfiguratino()
   {
     throw new Error("почему?");
   }

@@ -2,9 +2,6 @@ package com.spun.llewellyn.talks.legacycode.required;
 
 import java.sql.Connection;
 
-import com.spun.llewellyn.talks.legacycode.required.Loan;
-import com.spun.llewellyn.talks.legacycode.required.Person;
-
 public class Fruit
 {
   public Fruit()
@@ -15,11 +12,11 @@ public class Fruit
   {
     throw new Error("this shouldn't happen");
   }
-  protected Loan[] получатьвсезаймыдлятекущегопользователя()
+  protected Loan[] receiveEverythingOnLoanForTheCurrent()
   {
     throw new Error("todo: add better error message");
   }
-  public void увеличениенагрузкинаграфа(Person person)
+  public void increaseGraphLoad(Person person)
   {
     throw new Error("unexpected result");
   }
